@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 
 @Entity
 public class Book {
@@ -14,10 +12,20 @@ public class Book {
     private String title;
     private String writer;
 
+    private StatusLivro status;
+
     public Book() {};
 
     public Long getId() {
         return id;
+    }
+
+    public void setStatus(StatusLivro status) {
+        this.status = status;
+    }
+
+    public StatusLivro getStatus() {
+        return status;
     }
 
     public void setId(Long id) {

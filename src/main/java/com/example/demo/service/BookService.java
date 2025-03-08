@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Book;
+import com.example.demo.model.StatusLivro;
 import com.example.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +23,10 @@ public class BookService {
     }
 
     public Book createBook(Book book) {
+        if (book.getStatus() == null) {
+            book.setStatus(StatusLivro.DISPONIVEL);
+        }
+
         return this.bookRepository.save(book);
     }
 
@@ -39,5 +45,9 @@ public class BookService {
         }
 
         return null;
+    }
+
+    public List<Book> getBooksByStatus(StatusLivro status) {
+        return this.bookRepository.findByStatus(status);
     }
 }
